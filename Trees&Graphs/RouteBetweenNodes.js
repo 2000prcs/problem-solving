@@ -1,4 +1,3 @@
-
 class Graph {
   constructor(){
     this._nodes = {};
@@ -47,6 +46,8 @@ class Graph {
   }
 
   //Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
+
+  // recursive approach 
 
   // findRouteBetweenNodes(fromNode, toNode){
   //   if(this._nodes[fromNode].edges){
