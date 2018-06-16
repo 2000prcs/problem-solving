@@ -21,4 +21,4 @@ const isUnique = (str) => {
 console.log(isUnique('aabbb'));
 console.log(isUnique('abc'));
 
-
+// Time Complexity: O(n^2) / Space complexity: O(1)

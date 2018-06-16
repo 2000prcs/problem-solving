@@ -31,12 +31,13 @@ const URLify = (str, len) => {
   }
 
   return characters.join('');
-  // Case: Reg Exp
+
+  // Solution2: Reg Exp
   // const sub = str.substr(0, len);
   // const replaced = sub.replace(/ /g, '%20');  
   // return replaced;
 
-  // Case: Splice
+  // Solution3: splice
   // const splited = str.split('');
   // for(let i = 0; i < sub.length; i++){
     // if(splited[i] === ' '){
@@ -47,4 +48,5 @@ const URLify = (str, len) => {
 }
 
 
-console.log(URLify("Mr John Smith    ", 13));
+var result = URLify("Mr John Smith    ", 13);
+console.log(result);
