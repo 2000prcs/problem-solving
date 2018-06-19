@@ -17,7 +17,6 @@ const URLify = (str, len) => {
   }
 
   let backwardIndex = len + (spaceCount * 2);
-
   for(let j = len - 1; j > 0; j--){
     if(characters[j] === ' '){
       characters[backwardIndex - 1] = '0';

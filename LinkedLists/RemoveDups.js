@@ -1,4 +1,4 @@
-const { LinkedList } = require('../DataStructures/LinkedList');
+const { LinkedList } = require('../Data Structures/LinkedList');
 
 
 // Write code to remove duplicates from an unsorted linked list.

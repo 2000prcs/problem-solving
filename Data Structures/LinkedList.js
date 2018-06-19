@@ -22,10 +22,10 @@ class LinkedList {
     this.tail = newTail;
   }
   
-  contains(target){
+  contains(val){
     let node = this.head;
     while(node){
-      if(node === val){
+      if(node.value === val){
         return true;
       }
       node = node.next
