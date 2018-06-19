@@ -12,7 +12,7 @@ class LinkedList {
   }
 
   addToTail(val){
-    var newTail = new Node(val);
+    let newTail = new Node(val);
     if(!this.head){
       this.head = newTail;
     } 
@@ -23,7 +23,7 @@ class LinkedList {
   }
   
   contains(target){
-    var node = this.head;
+    let node = this.head;
     while(node){
       if(node === val){
         return true;
@@ -37,7 +37,7 @@ class LinkedList {
   removeHead(){
     if(!this.head) return null;
 
-    var oldHead = this.head;
+    let oldHead = this.head;
     list.head = list.head.next;
 
     return oldHead.value;
@@ -46,5 +46,6 @@ class LinkedList {
 }
 
 module.exports = {
-  LinkedList: LinkedList,
+  LinkedList,
+  Node,
 };
