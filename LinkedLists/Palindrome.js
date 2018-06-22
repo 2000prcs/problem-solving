@@ -3,29 +3,83 @@ const { LinkedList } = require('../Data Structures/LinkedList');
 // Implement a function to check if a linked list is a palindrome.
 
 const palindromeList = (list) => {
-  let original = list;
-  let currentNode = list.head;
-  let prevNode = null;
-  let nextNode = null;
-  
-  while(currentNode){
-    nextNode = currentNode.next;
-    currentNode.next = prevNode;
-    prevNode = currentNode;
-    currentNode = nextNode;
+  // solution 1 -> referse and compare from the middle
+  // time complexity O(N)
+  // Space (O(1))
+  let node = list.head;
+  let listLen = 0;
+  let mid;
+  let halfList = new LinkedList();
+  while(node){
+    listLen++;
+    node = node.next;
   }
-  list.head = prevNode;
+  mid = listLen / 2;
+  node = list.head;
+  let counter = 0;
+  while(counter <= mid){
+    halfList.addToTail(node.value);
+    counter++;
+    node = node.next;
+  }
+  let reversed = reverseList(halfList);
 
-  let originalHead = original.head;
-  let newHead = list.head;
-  while(originalHead && newHead){
-    if(originalHead.value !== newHead.value){
+  function reverseList(list){
+    let currentNode = list.head;
+    let prevNode = null;
+    let nextNode = null;
+    while(currentNode){
+      nextNode = currentNode.next;
+      currentNode.next = prevNode;
+      prevNode = currentNode;
+      currentNode = nextNode;
+    }
+    list.head = prevNode;
+    return list.head;
+  }
+
+  if(listLen % 2 !== 0){
+    reversed = reversed.next;
+  }
+  counter = 0;
+  while(counter <= mid && node && reversed){
+    if(node.value !== reversed.value){
       return false;
     }
-    originalHead = originalHead.next;
-    newHead = newHead.next;
+    counter++;
+    node = node.next;
+    reversed = reversed.next;
   }
-  return originalHead === null && newHead === null;
+  return true;
+
+  // solution 2 -> using Stack
+  // Time complexity: O(N)
+  // Space: O(N)
+
+  // let node = list.head;
+  // let listLen = 0;
+  // let mid;
+  // let stack = [];
+  // while(node){
+  //   listLen++;
+  //   node = node.next;
+  // }
+  // mid = Math.floor(listLen/2);
+  // node = list.head;
+  // for(let i = 0; i < mid; i++){
+  //   stack.push(node.value);
+  //   node = node.next;
+  // }
+  // if(listLen % 2 !== 0){
+  //   node = node.next;
+  // }
+  // while(node){
+  //   if(node.value !== stack.pop()){
+  //     return false;
+  //   }
+  //   node = node.next;
+  // }
+  // return true;
 }
 
 
@@ -35,7 +89,7 @@ list.addToTail(1);
 list.addToTail(2);
 list.addToTail(3);
 list.addToTail(2);
-list.addToTail(2);
+list.addToTail(1);
 console.log(list);
 let result = palindromeList(list);
 console.log(result);
