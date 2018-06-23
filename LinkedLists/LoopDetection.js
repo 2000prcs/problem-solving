@@ -8,18 +8,39 @@ const { LinkedList, Node } = require('../Data Structures/LinkedList');
 // Input: A -> B -> C -> D -> E -> C [the same C as earlier]
 // Output: C
 
-const detectLoop = (head) => {
-  let nodes = {};
-  while(head){
-    if(nodes[head.value]){
-      if(head === nodes[head.value]){
-        return head.value;
-      }
+const detectLoop = (node) => {
+
+  // Solution 1: using two pointers 
+  // Time: O(N)
+  // Additional space: O(1)
+
+  let slow = node;
+  let fast = node;
+  let fastOnly = false;
+  while(fast = fast.next){
+    if(slow === fast){
+      return slow.value;
+    }
+    if(!fastOnly){
+      slow = slow.next;
     } 
-    nodes[head.value] = head;
-    head = head.next;
+    fastOnly = !fastOnly;
   }
-  console.log(nodes)
+  return null;
+
+  // Solution 2: using Set or Hashtable 
+  // Time: O(N) - assumes Set is hashmap based so O(1) costs
+  // Additional space: O(N)
+
+  // let nodes = new Set();
+  // while(node){
+  //   if(nodes.has(node)){
+  //       return node.value;
+  //   } 
+  //   nodes.add(node);
+  //   node = node.next;
+  // }
+  // return null;
 }
 
 let nodeA = new Node('A');
