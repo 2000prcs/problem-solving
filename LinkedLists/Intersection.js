@@ -6,20 +6,43 @@ const { LinkedList, Node } = require('../Data Structures/LinkedList');
 // as the jth node of the second linked list, then they are intersecting.
 
 const findIntersection = (head1, head2) => {
-  let oldHead = head2;
+  let oldHead1 = head1;
+  let oldHead2 = head2;
+  let len1 = 0;
+  let len2 = 0;
   while(head1){
-    while(head2){
-      if(head1.value === head2.value){
-        if(head1 === head2){
-          return head1.value;
-        }
-      }
-      head2 = head2.next;
-    }
-    head2 = oldHead;
+    len1++;
     head1 = head1.next;
   }
+  while(head2){
+    len2++;
+    head2 = head2.next;
+  }
+  head1 = oldHead1;
+  head2 = oldHead2;
+  if(len1 > len2){
+    head1 = skip(head1, len1 - len2);
+  } else if (len2 > len1){
+    head2 = skip(head2, len2 - len1);
+  }
+  
+  while(head1 && head2){
+    if(head1 === head2){
+      return head1;
+    } 
+    head1 = head1.next;
+    head2 = head2.next;
+  }
+ 
   return undefined;
+}
+
+function skip(list, diff){
+  while(diff > 0){
+    list = list.next;
+    diff--;
+  }
+  return list;
 }
 
 
@@ -43,8 +66,6 @@ let node9 = new Node(6);
 
 node8.next = node9;
 node9.next = node5;
-
-console.log(node1, node8);
 
 let result = findIntersection(node1, node8);
 console.log(result);
