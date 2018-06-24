@@ -17,7 +17,6 @@ class TripleStack {
     return this._array;
   }
 
-
   pop(stack){
     let length = this.getLengths(stack);
     let value;
@@ -30,10 +29,15 @@ class TripleStack {
     return value;
   }
 
-
+  // Return the top of the stack
   peek(stack){
-    
-
+    let length = this.getLengths(stack);
+    let value;
+    if(length > 0){
+      let index = (length - 1) * 3 + stack - 1;
+      value = this._array[index];
+    }
+    return value;
   }
 
   isEmpty(stack){
@@ -53,3 +57,7 @@ array = stacks.push(2, 6);
 console.log(array);
 let popped = stacks.pop(1);
 console.log(popped);
+let peekValue = stacks.peek(2);
+console.log(peekValue);
+let isEmpty = stacks.isEmpty(3);
+console.log(isEmpty)
