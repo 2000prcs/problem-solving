@@ -4,7 +4,17 @@ class Stack {
     this.size;
   }
 
+  push(item){
+    this.storage[this.size++] = item;
+  }
+
+  pop(){
+    
+  }
   
+  length(){
+    return this.size;
+  }
  
 }
 
@@ -14,6 +24,17 @@ class Queue {
     this.outbox = new Stack();
   }
 
+  enqueue(item){
+
+  }
+
+  dequeue(){
+
+  }
+  
+  length(){
+    return this.size;
+  }
   
 }
 
