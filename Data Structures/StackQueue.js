@@ -1,7 +1,7 @@
 class Stack {
   constructor(){
     this.storage = [];
-    this.size;
+    this.size = 0;
   }
 
   push(item){
@@ -9,9 +9,9 @@ class Stack {
   }
 
   pop(){
-    this.storage[this.size] && this.storage[this.size--];
-    let item = this.storage[this.size];
-    delete this.storage[this.size];
+    let item = this.storage[this.size - 1];
+    delete this.storage[this.size - 1];
+    this.size--;
     return item;
   }
   
