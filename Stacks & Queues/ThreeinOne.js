@@ -47,7 +47,6 @@ class TripleStack {
 
 let stacks = new TripleStack();
 let len = stacks.getLengths(1);
-console.log(len);
 let array = stacks.push(1, 1);
 array = stacks.push(1, 2);
 array = stacks.push(1, 3);

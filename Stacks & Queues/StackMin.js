@@ -6,19 +6,16 @@ class Stack {
   constructor(){
     this.size = 0;
     this.storage = [];
+    this.minVal = undefined;
   }
 
   push(item){
-    console.log(this.storage[this.size-1])
-    if(this.storage[this.size-1] && item > this.storage[this.size-1]){
-      let lastVal = this.storage[this.size - 1];
-      this.storage[this.size-1] = item;
-      this.storage[this.size++] = lastVal;
-    } else {
-      this.storage[this.size++] = item;
+    if(this.minVal && item < this.minVal){
+      this.minVal = item;
+    } else if (!this.minVal){
+      this.minVal = item;
     }
-    console.log(this.storage)
-    console.log(this.size)
+    this.storage[this.size++] = item;
   }
 
   pop(){
@@ -28,7 +25,7 @@ class Stack {
   }
 
   min(){
-    return this.storage[this.size - 1];
+    return this.minVal;
   }  
 }
 

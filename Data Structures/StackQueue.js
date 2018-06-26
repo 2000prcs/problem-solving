@@ -9,7 +9,10 @@ class Stack {
   }
 
   pop(){
-    
+    this.storage[this.size] && this.storage[this.size--];
+    let item = this.storage[this.size];
+    delete this.storage[this.size];
+    return item;
   }
   
   length(){
