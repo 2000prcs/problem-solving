@@ -23,8 +23,8 @@ class Stack {
 
 class Queue {
   constructor(){
-    this.inbox = new Stack();
-    this.outbox = new Stack();
+    this.storage = [];
+    this.size = 0;
   }
 
   enqueue(item){
