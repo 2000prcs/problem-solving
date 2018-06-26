@@ -26,12 +26,10 @@ class StackOfPlates {
     } else {
       this.storages[this.storagesSize - 1].push(value);
     }
-    console.log(this.storages);
   }
 
   pop(){
     let item = this.storages[this.storagesSize - 1].pop();
-    console.log(item)
     if(this.storages[this.storagesSize - 1].size === 0){
       delete this.storages[this.storagesSize - 1];
       this.storagesSize--;
@@ -39,6 +37,14 @@ class StackOfPlates {
     return item;
   }
 
+  popAt(at){
+    let item = this.storages[at - 1].pop();
+    if(this.storages[at - 1].size === 0){
+      delete this.storages[at - 1];
+      this.storagesSize--;
+    }
+    return item;
+  }
 
 }
 
@@ -47,6 +53,10 @@ plates.push(1);
 plates.push(2);
 plates.push(3);
 plates.push(4);
+plates.push(5);
+plates.push(6);
 let popped = plates.pop();
+let poppedAt = plates.popAt(1);
 console.log(popped);
+console.log(poppedAt);
 console.log(plates);
