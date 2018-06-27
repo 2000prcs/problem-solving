@@ -2,23 +2,22 @@ const { Stack } = require('../Data Structures/StackQueue');
 
 // Implement a MyQueue class which implements a queue using two stacks.
 
+// Time: enqueue O(1), dequeue O(N)
+// Additional space: O(N) - to hold the input items
+
 class MyQueue {
   constructor(){
     this.inbox = new Stack();
     this.outbox = new Stack();
   }
 
-  // push to the inbox -> 1, 2, 3
-  // outbox:  3, 2, 1 
-  // inbox: 1, 2, 3
-  // pop from inbox and push to the outbox -> 3, 2, 1 
   enqueue(value){
     this.inbox.push(value);
   }
 
   dequeue(){
     if(this.outbox.length() === 0){
-      while(this.inbox.length() !== 0){
+      while(this.inbox.length() > 0){
         this.outbox.push(this.inbox.pop());
       }
     }

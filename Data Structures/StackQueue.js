@@ -14,6 +14,14 @@ class Stack {
     this.size--;
     return item;
   }
+
+  peek(){
+    return this.storage[this.size - 1];
+  }
+
+  isEmpty(){
+    return this.size === 0;
+  }
   
   length(){
     return this.size;
