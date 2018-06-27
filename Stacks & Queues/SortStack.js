@@ -5,7 +5,7 @@ const { Stack } =  require('../Data Structures/StackQueue');
 // into any other data structure (such as an array). 
 // The stack supports the following operations: push, pop, peek, and isEmpty.
 
-// This algorithm is O ( N^2 ) time and O (N) space.
+// This algorithm is O (N^2) time and O (N) space.
 const sortStack = (stack) => {
   let sortedStack = new Stack();
   while(!stack.isEmpty()){
