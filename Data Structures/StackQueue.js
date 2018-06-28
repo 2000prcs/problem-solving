@@ -32,19 +32,31 @@ class Stack {
 class Queue {
   constructor(){
     this.storage = [];
-    this.size = 0;
+    this.start = 0;
+    this.end = 0;
   }
 
   enqueue(item){
-
+    this.storage[this.end++] = item;
   }
 
   dequeue(){
+    let item = this.storage[this.start];
+    delete this.storage[this.start];
+    this.length() && this.start++;
+    return item;
+  }
 
+  peek(){
+    return this.storage[this.start];
   }
   
+  isEmpty(){
+    return this.length() === 0;
+  }
+
   length(){
-    return this.size;
+    return this.end - this.start;
   }
   
 }
