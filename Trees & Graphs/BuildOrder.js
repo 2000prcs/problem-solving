@@ -13,10 +13,8 @@ const topologicalSort = (adj, discovered, finished, path, project) => {
     return;
   }
   discovered.add(project);
-  console.log(discovered)
   path.add(project);
   for(let neighbour of adj[project]){
-    console.log(neighbour)
     if(path.has(neighbour)){
       throw new Error('Dependencies are cyclic');
     }
@@ -33,12 +31,10 @@ const buildOrder = (projects, dependencies) => {
   let path = new Set();
 
   projects.forEach(project => adj[project] = []);
-  console.log(projects)
-  dependencies.forEach(edge => adj[edge[1]].push(edge[0]));
-  console.log(adj);
+  dependencies.forEach(edge => adj[edge[0]].push(edge[1]));
   projects.forEach(project => topologicalSort(adj, discovered, finished, path, project));
 
-  return finished;
+  return finished.reverse();
 }
 
 
