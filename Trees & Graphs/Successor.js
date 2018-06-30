@@ -70,5 +70,7 @@ e.right = g; g.parent = e;
 console.log(a);
 console.log(getSuccessor(f));
 console.log(getSuccessor(g));
+console.log(getSuccessor(e));
+
 
 

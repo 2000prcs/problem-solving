@@ -8,3 +8,42 @@
 // dependencies: (a, d), (f, b), (b, d), (f, a), (d, c) 
 // Output: f, e, a, b, d, c
 
+const topologicalSort = (adj, discovered, finished, path, project) => {
+  if(discovered.has(project)){
+    return;
+  }
+  discovered.add(project);
+  console.log(discovered)
+  path.add(project);
+  for(let neighbour of adj[project]){
+    console.log(neighbour)
+    if(path.has(neighbour)){
+      throw new Error('Dependencies are cyclic');
+    }
+    topologicalSort(adj, discovered, finished, path, neighbour);
+  }
+  path.delete(project);
+  finished.push(project);
+}
+
+const buildOrder = (projects, dependencies) => {
+  let adj = {};
+  let finished = [];
+  let discovered = new Set();
+  let path = new Set();
+
+  projects.forEach(project => adj[project] = []);
+  console.log(projects)
+  dependencies.forEach(edge => adj[edge[1]].push(edge[0]));
+  console.log(adj);
+  projects.forEach(project => topologicalSort(adj, discovered, finished, path, project));
+
+  return finished;
+}
+
+
+
+let projects = ['a', 'b', 'c', 'd', 'e', 'f'];
+let dependencies = [['a','d'], ['f', 'b'], ['b', 'd'], ['f', 'a'], ['d', 'c']];
+let order = buildOrder(projects, dependencies);
+console.log(order);
