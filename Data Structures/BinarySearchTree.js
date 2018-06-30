@@ -25,6 +25,10 @@ class BinarySearchTree {
         // do nothing;
     }
   }
+
+  contains(){
+    
+  }
  
 }
 

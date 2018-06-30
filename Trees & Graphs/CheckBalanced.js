@@ -25,7 +25,7 @@ const findDepth = (cache, node, depth) => {
 
 const isBalanced = (tree) => {
   if(!tree){
-    return true;
+    return;
   }
 
   let cache = {
