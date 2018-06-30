@@ -6,18 +6,18 @@ const isValidBST = (tree) => {
   if(!tree){
     throw new Error('Invalid tree');
   } 
+  function validateBST(tree, min, max) {
+    if(tree){
+      if(tree.value < min || tree.value > max) {
+        return false;
+      } 
+      return validateBST(tree.left, min, tree.value) && validateBST(tree.right, tree.value, max);
+    } 
+    return true;
+  }
   return validateBST(tree, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY);
 }
 
-const validateBST = (tree, min = -Infinity, max = Infinity) => {
-  if(tree){
-    if(tree.value < min || tree.value > max) {
-      return false;
-    } 
-    return validateBST(tree.left, min, tree.value) && validateBST(tree.right, tree.value, max);
-  } 
-  return true;
-}
 
 
 let bst = new BinarySearchTree(15);
