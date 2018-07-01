@@ -26,13 +26,12 @@ class Tree {
 
 
   findFirstCommonAncestor(child1, child2) {
-
     let path1 = this.getAncestors(child1);
     if(!path1) return null;
 
     let path2 = this.getAncestors(child2);
     if(!path2) return null;
-    
+
     let firstCommonAncestor = this;
     let len = Math.min(path1.length, path2.length);
     for(let i = 0; i < len; i++){
