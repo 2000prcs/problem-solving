@@ -65,11 +65,11 @@ const isValidSudoku = (board) => {
   
     for(let i = 0; i < board.length; i++){
       let box = {};
-      let count = Math.floor(i / 3) * 3;
-      let count2 = (i % 3) * 3;
+      let rowCount = Math.floor(i / 3) * 3;
+      let colCount = (i % 3) * 3;
       for(let j = 0; j < 3; j++){
         for(let k = 0; k < 3; k++){
-          let current = board[count + j][count2 + k];
+          let current = board[rowCount + j][colCount + k];
           if(current !== '.'){
             if(box[current]) return false;
             box[current] = 1;
