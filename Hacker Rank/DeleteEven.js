@@ -1,6 +1,7 @@
-const {
-  Node
-} = require('../Data Structures/LinkedList');
+const { Node } = require('../Data Structures/LinkedList');
+
+// Given a linked list of integers, return a linked list containing only nodes having odd integers in their node->data field.
+// For example, given the list 1 -> 4 -> 7, you would return 1 -> 7
 
 // Complete the deleteEven function below.
 
@@ -13,6 +14,11 @@ const {
  * }
  *
  */
+
+ // input: 1-> 2-> 3-> 4-> 6
+ // output: 1 -> 3
+
+
 function deleteEven(listHead) {
   if(!listHead) return;
   let prevNode = listHead;
