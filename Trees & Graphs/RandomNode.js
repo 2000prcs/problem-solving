@@ -64,7 +64,7 @@ class RandomBST {
   }
 
   getRandomNode(){
-    let random = Math.floor(Math.random() * this.size);
+    let random = Math.floor(Math.random() * this.size) + 1;
     if(random < 1) return this;
     if(this.left){
          if(random < this.left.size){
@@ -77,7 +77,7 @@ class RandomBST {
       return this.right.getRandomNode();
     }
   }
-  
+
 }
 
 
