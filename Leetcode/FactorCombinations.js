@@ -1,50 +1,89 @@
-// input : integer
-// output: array of arrays
-// constraints: n is always positive / 1 < factor < n (no prime number)
-// edge cases : type of input / check if it's negative number / 
+// Numbers can be regarded as product of its factors. For example,
 
-// 12 
-// 2 -> 6  
-// 2 -> 2 -> 3
-// 3 -> 4 
+// 8 = 2 x 2 x 2;
+//   = 2 x 4.
+// Write a function that takes an integer n and return all possible combinations of its factors.
 
-// no duplication
-// find if the number is prime or not 
+// Note:
 
-// iterate through 2 to the input number 
-// when you find factor you push into the factor array 
-// divide input 12 by 2 and if it's dividable -> divdied output (6) will be pushed to the array 
-  // using the divided output as an argument, keep dividing recursively 
-  // when the output can't be divided, we stop 
+// You may assume that n is always positive.
+// Factors should be greater than 1 and less than n.
+// Example 1:
 
-// push factor arry to result 
-// factors = [[2,6]];
-// output = [];
-// store = new Map()
-// 
+// Input: 1
+// Output: []
+// Example 2:
 
-// recursive function starts (val, output)
-// 
-// if(val is prime){
-//  return;
-// } 
-// push output to factors
-// 
-// return;
-// 
-// 
+// Input: 37
+// Output:[]
+// Example 3:
 
-// for loop to iterate 2 to input 12 
-// value = input % i 
-// if(value === 0)
-// push i to output  ouput = [2] 
-// if(!store.has(input / i))
-//  -> push input/ i to output  => output = [2, 6]
-// -> store.set(val, true)
-// reucrsion Math.floor(input / i, output) 6
-// 
-// function isPrime(num) {
-//   for(var i = 2; i < num; i++)
-//     if(num % i === 0) return false;
-//   return num !== 1;
-// }
+// Input: 12
+// Output:
+// [
+//   [2, 6],
+//   [2, 2, 3],
+//   [3, 4]
+// ]
+// Example 4:
+
+// Input: 32
+// Output:
+// [
+//   [2, 16],
+//   [2, 2, 8],
+//   [2, 2, 2, 4],
+//   [2, 2, 2, 2, 2],
+//   [2, 4, 4],
+//   [4, 8]
+// ]
+
+var getFactors = function(n) {
+  let res = [];
+  let cur = [];
+  helper(res, cur, n, 2);
+  return res;
+};
+
+
+var helper = function(res, cur, n, next) {
+  if (n<=1) {
+      if (cur.length>1) res.push(cur.slice(0));
+      return;
+  }
+  let upper = Math.floor( Math.sqrt(n) );
+  for (let i=next; i<=upper; i++) {
+      if (n%i != 0) continue;
+      cur.push(i);
+      helper(res, cur, n/i, i);
+      cur.pop();
+  }
+  cur.push(n);
+  helper(res, cur, n/n, n);
+  cur.pop();
+};
+
+
+let output = getFactors(12);
+let expected = [
+  [2, 2, 3],
+  [2, 6],
+  [3, 4]
+];
+console.log(output)
+console.log(expected);
+
+// test
+function assertEqalArrays(actual, expected, testName){
+  let equalLengths = actual.length === expected.length;
+  let equalValues = actual.every((element, i) => {
+    return element === expected[i];
+  });
+  if(equalLengths && equalValues){
+    console.log(`PASSED [${testName}]`);
+  } else {
+    console.log(`FAILED [${testName} Expected ${expected}, but got ${actual}`);
+  }
+}
+
+assertEqalArrays(output, expected, 'Get factors');
