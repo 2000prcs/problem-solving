@@ -1,6 +1,6 @@
 class Node {
-  constructor(val){
-    this.value = val;
+  constructor(value){
+    this.val = value;
     this.next = null;
   }
 }
@@ -25,7 +25,7 @@ class LinkedList {
   contains(val){
     let node = this.head;
     while(node){
-      if(node.value === val){
+      if(node.val === val){
         return true;
       }
       node = node.next
@@ -40,7 +40,7 @@ class LinkedList {
     let oldHead = this.head;
     this.head = this.head.next;
 
-    return oldHead.value;
+    return oldHead.val;
   }
 
 }
