@@ -6,34 +6,36 @@ class Stack {
   constructor(){
     this.size = 0;
     this.storage = [];
-    this.minVal = undefined;
   }
 
   push(item){
-    if(this.minVal && item < this.minVal){
-      this.minVal = item;
-    } else if (!this.minVal){
-      this.minVal = item;
-    }
-    this.storage[this.size++] = item;
+    let min = this.storage.length > 0 ? this.storage[this.size - 1].min : item;
+    this.storage[this.size++] = {val: item, min: Math.min(min, item)};
   }
 
   pop(){
-    let value = this.storage[this.size];
+    let item = this.storage[this.size - 1];
     delete this.storage[this.size--];
-    return value;
+    return item ? item.val : null;
+  }
+
+  top(){
+    return this.storage[this.size - 1].val;
   }
 
   min(){
-    return this.minVal;
+    return this.storage[this.size - 1].min;
   }  
 }
 
 
 let newStack = new Stack();
-newStack.push(1);
-newStack.push(2);
-newStack.push(3);
-newStack.push(4);
+newStack.push(-2);
+newStack.push(0);
+newStack.push(-3);
+console.log(newStack);
 let minValue = newStack.min();
 console.log(minValue);
+console.log(newStack.pop());
+console.log(newStack.top());
+console.log(newStack.min());
