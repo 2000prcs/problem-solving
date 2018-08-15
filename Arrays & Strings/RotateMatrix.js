@@ -3,7 +3,9 @@
 
 const rotateMatrix = (matrix) => {
   let size = matrix.length - 1;
+   // Consider all squares one by one
   for(let layer = 0; layer <= size/2; layer++){
+    // Consider elements in group of 4 in current square
     for(let i = layer; i < size - layer; i++){
       let temp = matrix[layer][i];
       matrix[layer][i] = matrix[size-i][layer];
@@ -25,6 +27,20 @@ const rotateMatrix = (matrix) => {
   // return rotated;
 }
 
+const rotateMatrixCounterClockWise = (matrix) => {
+  let size = matrix.length - 1;
+  for(let layer = 0; layer <= size/2; layer++){
+    for(let i = layer; i < size - layer; i++){
+      let temp = matrix[layer][i];
+      matrix[layer][i] = matrix[i][size-layer]; 
+      matrix[i][size-layer] = matrix[size-layer][size-i];
+      matrix[size-layer][size-i] = matrix[size-i][layer];
+      matrix[size-i][layer] = temp;
+    }
+  }
+  return matrix;
+}
+
 var matrix = [
   [1,2,3,4],
   [5,6,7,8],
@@ -34,3 +50,12 @@ var matrix = [
 var result = rotateMatrix(matrix);
 console.log(result);
 
+var matrix = [
+  [1,2,3,4],
+  [5,6,7,8],
+  [9,10,11,12],
+  [13,14,15,16]
+];
+
+var result2 = rotateMatrixCounterClockWise(matrix);
+console.log(result2);

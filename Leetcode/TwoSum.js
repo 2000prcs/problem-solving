@@ -11,6 +11,9 @@
 
 // Try in O(N) time complexity
 
+// Time Complexity: O(N)
+// Space Complexity: O(N)
+
 var twoSum = function(nums, target) {
   let result = [];
   let store = {};
@@ -19,7 +22,7 @@ var twoSum = function(nums, target) {
   }
   for(let i = 0; i < nums.length; i++){
     let index = store[target - nums[i]];
-    if(index) return [i, index];
+    if(index && i !== index) return [i, index];
   }
   return result;
 };
@@ -39,3 +42,4 @@ var twoSum = function(nums, target) {
 // };
 
 console.log(twoSum([2, 7, 11, 15], 9));
+console.log(twoSum([1,3,4,2], 6));

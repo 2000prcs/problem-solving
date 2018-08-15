@@ -10,14 +10,14 @@
 
 function electionWinner(votes) {
   let winner = votes[0];
-  let sorted = votes.sort();
+  votes.sort();
   let voters = votes.reduce((count, person)=>{
     count[person] = (count[person] || 0) + 1;
     return count; 
   }, {});
-  for(let key in voters){
-    if(voters[key] >= voters[winner]){
-      winner = key;
+  for(let person in voters){
+    if(voters[person] >= voters[winner]){
+      winner = person;
     }
   }
   return winner;

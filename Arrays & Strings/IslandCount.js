@@ -26,8 +26,12 @@
 // 1 ≤ binaryMatrix[i].length ≤ 100
 // [output] integer
 
+// Time: O(M * N) where M is the number of rows and N is the number of cols
+// Space: worst case O(M * N) in case that the grid map is filled with lands where DFS goes M * N deep
+
 function getNumberOfIslands(binaryMatrix) {
   let islands = 0;
+  if(binaryMatrix.length === 0) return islands;
   let rows = binaryMatrix.length;
   let cols = binaryMatrix[0].length;
   

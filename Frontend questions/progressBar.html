@@ -1,0 +1,72 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <style>
+    #progress-bar {
+      width: 500px;
+      height: 50px;
+      border: 1px solid black;
+      position: relative;
+    }
+
+    #progress {
+      background-color: pink;
+      width: 0px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      color: white;
+    }
+
+    #text {
+      position: absolute;
+      line-height: 50px;
+      color: black;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%)
+    }
+  </style>
+
+  <div id="progress-bar">
+    <div id="text">10%</div>
+    <div id="progress"></div>
+  </div>
+
+  <script>
+    
+    const runProgress = (time) => {
+      let bar = document.getElementById('progress-bar');
+      let progress = document.getElementById('progress');
+      let text = document.getElementById('text');
+      let barWidth = 500;
+      let widthToGo = Math.floor(barWidth / 100);
+      let frame = Math.floor(time / 100);
+      let width = 0;
+      let moveForward = setInterval(move, frame);
+    
+      function move (){
+        if(width === barWidth){
+          clearInterval(moveForward);
+        } else {
+          width = width + widthToGo;
+          progress.style.width = width + 'px';
+          text.innerHTML = Math.floor(width / widthToGo) + '%';
+        }
+      } 
+    }
+
+
+    let time = 5000;
+    runProgress(time);
+    
+  </script>
+  
+</body>
+</html>

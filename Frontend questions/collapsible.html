@@ -1,0 +1,88 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+</head>
+<body>
+  <div>
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+  </div>
+  <div>
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+  </div>
+  <div>
+    <button class="accordion">Section 3</button>
+    <div class="panel">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+  </div>
+
+  <style>
+      /* Style the buttons that are used to open and close the accordion panel */
+      .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+      }
+  
+      /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+      .active,
+      .accordion:hover {
+        background-color: #ccc;
+      }
+  
+      /* Style the accordion panel. Note: hidden by default */
+      .panel {
+        /* display: none; */
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        max-height: 0px;
+      }
+
+    </style>
+  
+  <script>
+    let sections = document.getElementsByClassName('accordion');
+    let panels = document.querySelectorAll('.panel');
+
+    function showSection(){
+      this.classList.toggle('active');
+      let content = this.nextElementSibling;
+      if(content.style.maxHeight){
+        content.style.maxHeight = 0;
+      } else {
+        panels.forEach(panel => panel.style.maxHeight = null);
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+      // if(content.style.display === 'block'){
+      //   content.style.display = 'none';
+      // } else {
+      //   content.style.display = 'block';
+      // }
+    }
+
+    for(let i = 0; i < sections.length; i++){
+      console.log(sections[i]);
+      sections[i].addEventListener('click', showSection);
+    }
+
+  </script>
+
+</body>
+</html>

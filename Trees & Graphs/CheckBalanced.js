@@ -34,7 +34,7 @@ const isBalanced = (tree) => {
   };
 
   findDepth(cache, tree, 0);
-  return Math.abs(cache.max - cache.min) <= 1;
+  return Math.abs(cache.max - cache.min) < 1;
 }
 
 
