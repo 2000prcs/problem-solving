@@ -11,19 +11,25 @@
 
 // Try in O(N) time complexity
 
-// Time Complexity: O(N)
-// Space Complexity: O(N)
+// Time Complexity: O(N) - We traverse the list containing nn elements exactly twice. 
+// Since the hash table reduces the look up time to O(1), the time complexity is O(n).
+// Space Complexity: O(N) - The extra space required depends on the number of items stored in the hash table, which stores exactly n elements. 
 
 var twoSum = function(nums, target) {
   let result = [];
   let store = {};
   for(let i = 0; i < nums.length; i++){
-      store[nums[i]] = i;
+    let value = target - nums[i];
+    // if the value is 0, it becomes falsy so check if it's defined instead
+    if(store[value] !== undefined && store[value] !== i){
+      return [i, store[value]];
+    } 
+    store[nums[i]] = i;
   }
-  for(let i = 0; i < nums.length; i++){
-    let index = store[target - nums[i]];
-    if(index && i !== index) return [i, index];
-  }
+  // for(let i = 0; i < nums.length; i++){
+  //   let index = store[target - nums[i]];
+  //   if(index && i !== index) return [i, index];
+  // }
   return result;
 };
 

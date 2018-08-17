@@ -19,7 +19,7 @@ const sumLists = (list1, list2) => {
   let sum = 0;
   
   while(node1 && node2){
-    sum = node1.value + node2.value + carry;
+    sum = node1.val + node2.val + carry;
     if(sum >= 10){
       carry = 1;
       sum -= 10;
@@ -33,7 +33,7 @@ const sumLists = (list1, list2) => {
 
   node1 = node1 || node2;
   while(node1){
-    sum = node1.value + carry;
+    sum = node1.val + carry;
     if(sum >= 10){
       carry = 1;
       sum -= 10;
@@ -58,8 +58,8 @@ const sumLists = (list1, list2) => {
   // let node1 = list1.head;
   // let node2 = list2.head;
   // while(node1 || node2){
-  //   num1 += node1.value;
-  //   num2 += node2.value;
+  //   num1 += node1.val;
+  //   num2 += node2.val;
   //   node1 = node1.next;
   //   node2 = node2.next;
   // }

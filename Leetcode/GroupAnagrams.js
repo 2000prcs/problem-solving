@@ -15,13 +15,29 @@
 // The order of your output does not matter.
 
 // Solution 1
-var groupAnagrams = function(strs) {
-  const groups = {};
-  for (let str of strs){
-    let key = str.split('').sort().join('');
-    groups[key] = [...groups[key] || [], str]; 
+// var groupAnagrams = function(strs) {
+//   const groups = {};
+//   for (let str of strs){
+//     let key = str.split('').sort().join('');
+//     groups[key] = [...groups[key] || [], str]; 
+//   }
+//   return Object.values(groups);
+// };
+
+function groupAnagrams (strs) {
+  const hash = new Map();
+
+  for (let str of strs) {
+    const word = str.split('').sort().join();
+
+    if (!hash.has(word)) {
+      hash.set(word, []);
+    }
+
+    hash.get(word).push(str);
   }
-  return Object.values(groups);
+
+  return [...hash.values()];
 };
 
 // Solution 2
