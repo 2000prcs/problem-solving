@@ -7,7 +7,7 @@
 // What is the maximum worth of goods that the thief can steal?
 
 const range = (n, elm) => {
-  var out = [];
+  let out = [];
   for (let i = 0; i < n; i++) {
     if (Array.isArray(elm)) {
       out.push(elm.slice());
@@ -19,7 +19,7 @@ const range = (n, elm) => {
 };
 
 const knapsack = (maxWeight, weights, vals, n) => {
-  var table = range(vals.length + 1, range(maxWeight + 1, 0));
+  let table = range(vals.length + 1, range(maxWeight + 1, 0));
   // i = rows, w = cols
   // weights = rows
   // maxWeight = cols
@@ -43,9 +43,9 @@ const knapsack = (maxWeight, weights, vals, n) => {
   return table[n][maxWeight];
 };
 
-let val = [6000, 100, 120, 1000];
-let wt = [50, 20, 30, 5];
-let W = 50;
+let val = [1, 4, 5, 7];
+let wt = [1, 3, 4, 5];
+let W = 7;
 let n = val.length;
 
 console.log(knapsack(W, wt, val, n));
