@@ -14,3 +14,7 @@
 
 // 	- when you press tab, go to the next option
 // move between options when you move up and down
+
+
+//3.  red, yellow, green, blue buttons and every time you press one of the buttons, you add a small amount of its color to the background div
+
