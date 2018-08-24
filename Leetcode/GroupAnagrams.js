@@ -14,7 +14,7 @@
 // All inputs will be in lowercase.
 // The order of your output does not matter.
 
-// Solution 1
+// Solution 1 -> using sort()
 // var groupAnagrams = function(strs) {
 //   const groups = {};
 //   for (let str of strs){
@@ -24,21 +24,26 @@
 //   return Object.values(groups);
 // };
 
-function groupAnagrams (strs) {
-  const hash = new Map();
+// time complexity: O(N KlogK) - where N is the length of strs, and K is the maximum length of a string in strs
+// The outer loop has complexity O(N) as we iterate through each string. Then we sort each string in O(K log K) time.
+// Space complexity: O(NK) - the total information content stored in anagrams
 
-  for (let str of strs) {
-    const word = str.split('').sort().join();
 
-    if (!hash.has(word)) {
-      hash.set(word, []);
-    }
+// function groupAnagrams (strs) {
+//   const hash = new Map();
 
-    hash.get(word).push(str);
-  }
+//   for (let str of strs) {
+//     const word = str.split('').sort().join();
 
-  return [...hash.values()];
-};
+//     if (!hash.has(word)) {
+//       hash.set(word, []);
+//     }
+
+//     hash.get(word).push(str);
+//   }
+
+//   return [...hash.values()];
+// };
 
 // Solution 2
 // var groupAnagrams = function(strs) {
@@ -58,6 +63,31 @@ function groupAnagrams (strs) {
 //   } 
 //   return result;
 // };
+
+
+// Solution 3 -> usign character count (no sorting)
+// Time complexity: O(NK) - where N is the length of strs, and K is the maximum length of a string in strs
+// coUNTING EACH STRING IS LINEAR IN THE SIZE OF THE STRING, and we count every string
+// Space complexity: O(NK) - the total information content stored in anagrams
+
+
+function groupAnagrams(strs){
+  let strArray = new Array(26).fill(0);
+  let anagrams = {};
+  for(let i = 0; i < strs.length; i++){
+    for(let j = 0; j < strs[i].length; j++){
+      strArray[strs[i].charCodeAt(j) - 'a'.charCodeAt(0)]++;
+    }
+    if(anagrams[strArray]){
+      anagrams[strArray].push(strs[i]);
+    } else {
+      anagrams[strArray] = [strs[i]];
+    }
+    strArray.fill(0);
+  }
+  return Object.values(anagrams);
+}
+
 
 
 const input = ["paw","dad","bog","day","day","mig","len","rat"];
