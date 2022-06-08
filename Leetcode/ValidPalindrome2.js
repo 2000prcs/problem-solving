@@ -35,8 +35,10 @@ const validPalindrome = (s) => {
     let i = 0;
     let j = s.length - 1;
 
+    // While i < j, check if the characters at indices i and j match. If they don't, that means we must spend our deletion on one of these characters.
+    // Try both options using isPalindrome. In other words, return true if either isPalindrome(s, i, j -1) or isPalindrome(s, i + 1, j) is true.
     while (i < j) {
-        if (s[i] !== s[j]) {
+        if (s[i] !== s[j]) { // b 1 and c 2
             return isPalindrome(s, i + 1, j) || isPalindrome(s, i, j - 1);
         }
         i += 1;
