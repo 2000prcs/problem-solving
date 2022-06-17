@@ -24,16 +24,21 @@
 // s consists of English letters, digits, symbols and spaces.
 
 const lengthOfLongestSubstring = (string) => {
-    let i = 0;
+    // keeps track of the starting index of the current substring.
+    let start = 0;
     let maxLength = 0;
+    // keeps track of the most recent index of each letter.
     const lookup = {};
     
     for (j = 0; j < string.length; j++) {
+        // If the current char is in lookup, move the start to (1 + the last index of this char)
+        // max prevents moving backward, 'start' can only move forward
         if (lookup[string[j]] !== undefined) {
-            i = Math.max(lookup[string[j]], i);
+            start = Math.max(lookup[string[j]] + 1, start);
         }
-        maxLength = Math.max(maxLength, j - i + 1);
-        lookup[string[j]] = j + 1;
+        // maximum of the current substring length and maxLength
+        maxLength = Math.max(maxLength, j - start + 1);
+        lookup[string[j]] = j;
     }
     return maxLength;
 }
