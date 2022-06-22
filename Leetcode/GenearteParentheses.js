@@ -1,33 +1,39 @@
 // Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
-// For example, given n = 3, a solution set is:
+// Example 1:
 
-// [
-//   "((()))",
-//   "(()())",
-//   "(())()",
-//   "()(())",
-//   "()()()"
-// ]
+// Input: n = 3
+// Output: ["((()))","(()())","(())()","()(())","()()()"]
+
+// Example 2:
+
+// Input: n = 1
+// Output: ["()"]
+ 
+// Constraints:
+
+// 1 <= n <= 8
 
 
-var generateParenthesis = function(n) {
+const generateParenthesis = (n) => {
     let result = [];
-    function backtrack(s, left, right){
-      if(s.length === 2 * n){
-        result.push(s);
+
+    const backtrack = (parensString, openUsed, closeUsed) => {
+      if(parensString.length === 2 * n){
+        result.push(parensString);
         return;
       }
-      if(left < n){
-        backtrack(s + '(', left+1, right);
+      if(openUsed < n){
+        backtrack(parensString + '(', openUsed + 1, closeUsed);
       }
-      if(right < left){
-        backtrack(s + ')', left, right+1);
+      if(closeUsed < openUsed){
+        backtrack(parensString + ')', openUsed, closeUsed + 1);
       }
     }
     backtrack('', 0, 0);
+
     return result;
 };
 
 
-console.log(generateParenthesis(3));
+console.log(generateParenthesis(3)); // ["((()))","(()())","(())()","()(())","()()()"]
