@@ -121,6 +121,6 @@ const input2 = ["", ""]
 const input3 = ["eat", "tea", "tan", "ate", "nat", "bat"];
 
 // const result = groupAnagrams(input);
-const result3 = groupAnagrams(input3);
+const result3 = groupAnagrams(input3); // [["bat"],["nat","tan"],["ate","eat","tea"]]
 // console.log(result);
 console.log(result3);
