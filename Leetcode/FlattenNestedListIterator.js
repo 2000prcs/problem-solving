@@ -56,31 +56,63 @@
  * };
  */
 
-class NestedInteger (nestedList) {
+class NestedInteger {
     constructor(nestedList) {
-        this.output = [];
-        this.index = 0;
-        this.flatten(nestedList);
-    }
+        // this.output = [];
+        // this.index = 0;
 
-    flatten(list) {
-        for (const item of list) {
-            if (item.isInteger()) {
-                this.output.push(item.getInteger());
-            } else {
-                this.flatten(item.getList());
+        function* flatten(list) {
+            for (const item of list) {
+                if(typeof item === 'number') {
+                    yield item;
+                } else {
+                    yield* flatten(item);
+                }
             }
         }
+
+        this.generator = flatten(nestedList);
+        this.nextObject = {};
     }
 
+    // flatten(list) {
+    //     for (const item of list) {
+    //         // if (item.isInteger()) {
+    //         if(typeof item === 'number') {
+    //             // this.output.push(item.getInteger());
+    //             this.output.push(item);
+    //         } else {
+    //             // this.flatten(item.getList());
+    //             this.flatten(item);
+    //         }
+    //     }
+    // }
+
     hasNext() {
-        return this.index < this.output.length;
+        // return this.index < this.output.length;
+
+        this.nextObject = this.generator.next();
+        return !this.nextObject.done;
     }
 
     next() {
-        if (!this.hasNext()) {
-            return undefined;
-        }
-        return this.ouput[this.index++];
+        // if (!this.hasNext()) {
+        //     return undefined;
+        // }
+        // return this.output[this.index++];
+
+        return this.nextObject.value;
     }
 }
+
+const nestedInteger = new NestedInteger([[1,1],2,[1,1]]);
+
+const getOutput = (nestedInteger) => {
+    const res = [];
+    while (nestedInteger.hasNext()) {
+        res.push(nestedInteger.next());
+    }
+    return res;
+}
+
+console.log(getOutput(nestedInteger)); // [1,1,2,1,1]
